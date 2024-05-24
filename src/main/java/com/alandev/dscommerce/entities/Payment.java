@@ -3,17 +3,18 @@ package com.alandev.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "tb_payment")
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant moment;
+    @Column
+    private LocalDateTime moment;
 
     @OneToOne
     @MapsId
@@ -22,7 +23,7 @@ public class Payment {
     public Payment(){
     }
 
-    public Payment(Long id, Instant moment, Order order) {
+    public Payment(Long id, LocalDateTime moment, Order order) {
         this.id = id;
         this.moment = moment;
         this.order = order;
@@ -36,11 +37,11 @@ public class Payment {
         this.id = id;
     }
 
-    public Instant getMoment() {
+    public LocalDateTime getMoment() {
         return moment;
     }
 
-    public void setMoment(Instant moment) {
+    public void setMoment(LocalDateTime moment) {
         this.moment = moment;
     }
 
